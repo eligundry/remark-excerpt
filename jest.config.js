@@ -1,18 +1,24 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  preset: 'ts-jest',
   testEnvironment: 'node',
-  collectCoverageFrom: ['**/*.sepc.js'],
-  coverageDirectory: '.coverage',
-  coverageThreshold: {
-    global: {
-      branches: 100,
-      functions: 100,
-      lines: 100,
-      statements: 100,
+  // collectCoverageFrom: ['src/**/*.spec.ts'],
+  // coverageDirectory: '.coverage',
+  // coverageThreshold: {
+  //   global: {
+  //     branches: 100,
+  //     functions: 100,
+  //     lines: 100,
+  //     statements: 100,
+  //   },
+  // },
+  // snapshotSerializers: ['jest-snapshot-serializer-raw'],
+  testPathIgnorePatterns: ['build/*'],
+  preset: 'ts-jest/presets/js-with-babel-esm',
+  extensionsToTreatAsEsm: ['.ts'],
+  globals: {
+    'ts-jest': {
+      useESM: true,
     },
   },
-  snapshotSerializers: ['jest-snapshot-serializer-raw'],
-  testEnvironment: 'node',
+  transformIgnorePatterns: ['node_modules/(?!(remark))/'],
 }
-

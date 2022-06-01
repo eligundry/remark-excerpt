@@ -1,7 +1,8 @@
 {
   "name": "@eligundry/remark-excerpt",
   "description": "Remark transformer for extracting an excerpt.",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.2",
+  "private": false,
   "author": {
     "name": "Eli Gundry",
     "email": "eligundry@gmail.com",
@@ -10,7 +11,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eligundry/remark-excerpt.git"
+    "url": "https://github.com/eligundry/remark-excerpt.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "excerpt",
@@ -24,14 +28,26 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "main": "src/index.ts",
+  "type": "module",
+  "main": "./build/index.js",
+  "exports": {
+    ".": "./build/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "index.d.ts": [
+        "build/index.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "coverage": "jest --coverage",
     "example": "node example/example.js",
     "prettier": "prettier --write \"**/*.{js,ts,md,mdx,yml}\"",
     "test": "yarn coverage",
     "unit": "jest",
-    "build": "tsc --skipLibCheck src/index.ts"
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "unist-util-visit": "^4.1.0"
