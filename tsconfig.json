@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2020",
     "skipLibCheck": true,
-    "lib": ["dom", "esnext", "es7"],
+    "lib": ["ES2020"],
+    "module": "ES2020",
     "esModuleInterop": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "commonjs",
     "moduleResolution": "node",
     "isolatedModules": true,
     "declaration": true
