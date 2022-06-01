@@ -1,28 +1,17 @@
 const visit = require('unist-util-visit');
 
-const isComment = new RegExp('<!--(.*?)-->');
-const getComment = new RegExp('<!--([\\s\\S]*?)-->');
+const defaultIdentifiers = ['excerpt', 'more', 'preview', 'teaser'];
 
-const excerpt = (options = {}) => {
+/**
+ * @type {import('unified').Plugin}
+ */
+const excerpt = ({identifiers = defaultIdentifiers} = {}) => {
     const transformer = (tree) => {
-        const excerpts =
-            options.identifier && options.identifier.length
-                ? [options.identifier]
-                : ['excerpt', 'more', 'preview', 'teaser'];
-
         let excerptIndex = -1;
 
-        visit(tree, 'html', (node) => {
-            if (excerptIndex === -1 && isComment.test(node.value)) {
-                const comment = getComment.exec(node.value);
-
-                if (comment) {
-                    const text = comment[1].trim();
-
-                    if (excerpts.includes(text)) {
-                        excerptIndex = tree.children.indexOf(node);
-                    }
-                }
+        visit(tree, 'comment', (node, idx) => {
+            if (node.commentValue && identifiers.some((e) => node.commentValue.trim() === e)) {
+                excerptIndex = idx;
             }
         });
 
@@ -37,35 +26,30 @@ const excerpt = (options = {}) => {
 /**
  * @type {import('unified').Plugin}
  */
-const excerptBreakpoint = (options = {}) => {
+const excerptBreakpoint = ({breakpointID = 'read-more', identifiers = defaultIdentifiers} = {}) => {
     return (tree) => {
-        const excerpts =
-            options.identifier && options.identifier.length
-                ? [options.identifier]
-                : ['excerpt', 'more', 'preview', 'teaser'];
-
         let excerptIndex = -1;
 
         visit(tree, 'comment', (node, idx) => {
-            if (node.commentValue && excerpts.some((e) => node.commentValue.trim() === e)) {
+            if (node.commentValue && identifiers.some((e) => node.commentValue.trim() === e)) {
                 excerptIndex = idx;
             }
         });
 
         if (excerptIndex > -1) {
-            tree.children[excerptIndex] = {
+            tree.children.splice(excerptIndex, 1, {
                 type: 'mdxJsxTextElement',
                 name: 'span',
                 attributes: [
                     {
                         type: 'mdxJsxAttribute',
                         name: 'id',
-                        value: 'read-more'
+                        value: breakpointID
                     }
                 ],
                 children: [],
                 data: {_mdxExplicitJsx: true}
-            };
+            });
         }
     };
 };
