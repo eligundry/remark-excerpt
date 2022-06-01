@@ -4,6 +4,9 @@
 
 This is a [remark](https://remark.js.org/) plugin for transformer for extracting an excerpt, similar to [WordPress's excerpt functionality](https://kinsta.com/knowledgebase/wordpress-excerpt/).
 
+This repo is a fork of [manovotny/remark-excerpt](https://github.com/manovotny/remark-excerpt) that I extended for more
+related functionality.
+
 ## Installation
 
 ### NPM
@@ -38,13 +41,13 @@ Paragraph 4.
 
 And our script, `example.js`, looks as follows:
 
-```js
-const remark = require('remark');
-const excerpt = require('remark-excerpt');
-const vfile = require('to-vfile');
+```javascript
+import fs from 'fs';
+import remark from 'remark';
+import { excerpt } from 'remark-excerpt';
 
 (async () => {
-    const file = await vfile.read('example.md');
+    const file = await fs.promises.read('example.md');
     const result = await remark()
         .use(excerpt)
         .process(file);
@@ -63,7 +66,38 @@ Paragraph 1.
 Paragraph 2.
 ```
 
-You can try this yourself by downloading or cloning the project, installing dependencies, and running `yarn example`.
+If you wanted to link to where the excerpt broke off, say for a read more link, you would do the following:
+
+```javascript
+import fs from 'fs';
+import remark from 'remark';
+import { excerptBreakpoint } from 'remark-excerpt';
+
+(async () => {
+    const file = await fs.promises.read('example.md');
+    const result = await remark()
+        .use(excerptBreakpoint)
+        .process(file);
+
+    console.log(result.toString());
+})();
+```
+
+This would yield the following:
+
+```
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+```
 
 ## API
 
@@ -82,4 +116,4 @@ Specifies the excerpt comment identifier to look for.
 
 ## License
 
-MIT © [Michael Novotny](https://manovotny.com)
+MIT © [Eli Gundry](https://eligundry.com)
