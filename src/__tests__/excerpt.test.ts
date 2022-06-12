@@ -2,12 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { wrap } from 'jest-snapshot-serializer-raw'
 import { remark } from 'remark'
-import {
-  excerpt,
-  ExcerptOptions,
-  excerptBreakpoint,
-  ExcerptBreakpointOptions,
-} from '../index'
+import { excerpt, ExcerptOptions } from '../index'
 
 describe('excerpt', () => {
   const processFixture = async (name: string, options?: ExcerptOptions) => {

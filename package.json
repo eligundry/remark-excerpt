@@ -62,5 +62,13 @@
     "to-vfile": "5.0.2",
     "ts-jest": "^28.0.3",
     "typescript": "^4.7.2"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "semi": false
   }
 }

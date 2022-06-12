@@ -42,18 +42,16 @@ Paragraph 4.
 And our script, `example.js`, looks as follows:
 
 ```javascript
-import fs from 'fs';
-import remark from 'remark';
-import { excerpt } from 'remark-excerpt';
+import fs from 'fs'
+import remark from 'remark'
+import { excerpt } from 'remark-excerpt'
 
-(async () => {
-    const file = await fs.promises.read('example.md');
-    const result = await remark()
-        .use(excerpt)
-        .process(file);
+;(async () => {
+  const file = await fs.promises.read('example.md')
+  const result = await remark().use(excerpt).process(file)
 
-    console.log(result.toString());
-})();
+  console.log(result.toString())
+})()
 ```
 
 Now, running `node example` yields:
@@ -69,18 +67,16 @@ Paragraph 2.
 If you wanted to link to where the excerpt broke off, say for a read more link, you would do the following:
 
 ```javascript
-import fs from 'fs';
-import remark from 'remark';
-import { excerptBreakpoint } from 'remark-excerpt';
+import fs from 'fs'
+import remark from 'remark'
+import { excerptBreakpoint } from 'remark-excerpt'
 
-(async () => {
-    const file = await fs.promises.read('example.md');
-    const result = await remark()
-        .use(excerptBreakpoint)
-        .process(file);
+;(async () => {
+  const file = await fs.promises.read('example.md')
+  const result = await remark().use(excerptBreakpoint).process(file)
 
-    console.log(result.toString());
-})();
+  console.log(result.toString())
+})()
 ```
 
 This would yield the following:
