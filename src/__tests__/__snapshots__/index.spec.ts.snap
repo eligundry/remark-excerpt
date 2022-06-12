@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`excerpt should handle identifier with dashes 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!-- custom-with--dashes -->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should handle identifier with spaces 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!-- custom with spaces -->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should handle mdx 1`] = `
+import something from 'something';
+
+export const meta = {
+prop: 'value'
+};
+
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!-- excerpt -->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should handle no spacing in exceprt comment 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!--excerpt-->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should return after excerpt when multiple exist 1`] = `
+# Title
+
+Paragraph 1.
+
+<!-- excerpt -->
+
+Paragraph 2.
+
+<!-- excerpt -->
+
+Paragraph 3.
+
+<!-- excerpt -->
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should return excerpt using "exceprt" identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!-- excerpt -->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should return excerpt using "more" identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!-- more -->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should return excerpt using "preview" identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!-- preview -->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should return excerpt using "teaser" identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!-- teaser -->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should return excerpt using custom identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<!-- custom -->
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerpt should return unmodified document when no excerpt exists 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;

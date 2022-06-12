@@ -1,19 +1,19 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
-module.exports = {
+export default {
   testEnvironment: 'node',
-  // collectCoverageFrom: ['src/**/*.spec.ts'],
-  // coverageDirectory: '.coverage',
-  // coverageThreshold: {
-  //   global: {
-  //     branches: 100,
-  //     functions: 100,
-  //     lines: 100,
-  //     statements: 100,
-  //   },
-  // },
-  // snapshotSerializers: ['jest-snapshot-serializer-raw'],
+  collectCoverageFrom: ['src/**/*.spec.ts'],
+  coverageDirectory: '.coverage',
+  coverageThreshold: {
+    global: {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100,
+    },
+  },
+  snapshotSerializers: ['jest-snapshot-serializer-raw'],
   testPathIgnorePatterns: ['build/*'],
-  preset: 'ts-jest/presets/js-with-babel-esm',
+  preset: 'ts-jest/presets/js-with-ts-esm',
   extensionsToTreatAsEsm: ['.ts'],
   globals: {
     'ts-jest': {
