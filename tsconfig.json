@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "skipLibCheck": true,
+    "lib": ["ES2020"],
+    "module": "ES2020",
+    "esModuleInterop": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "declaration": true,
+    "outDir": "build",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true
+  },
+  "include": ["src"]
+}

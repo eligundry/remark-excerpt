@@ -4,19 +4,28 @@
 
 This is a [remark](https://remark.js.org/) plugin for transformer for extracting an excerpt, similar to [WordPress's excerpt functionality](https://kinsta.com/knowledgebase/wordpress-excerpt/).
 
+This repo is a fork of [manovotny/remark-excerpt](https://github.com/manovotny/remark-excerpt) that I extended for more
+related functionality and better MDX support.
+
+This plugin is tailored for MDX support. In order to use this plugin, the following packages must be installed and
+included in the Remark `use` chain:
+
+* [remark-parse](https://www.npmjs.com/package/remark-parse)
+* [remark-comment](https://www.npmjs.com/package/remark-comment)
+* Some sort of MDX processor, either [remark-mdx](https://github.com/mdx-js/mdx/tree/main/packages/remark-mdx) or
+  providing this plugin and others to [mdx-bundler](https://github.com/kentcdodds/mdx-bundler) in the `remarkPlugins`
+  option.
+
 ## Installation
 
-### NPM
+```bash
+# npm
+$ npm i @eligundry/remark-excerpt remark-parse remark-comment
+# yarn
+$ yarn add @eligundry/remark-excerpt remark-parse remark-comment
+```
 
-```
-$ npm i remark-excerpt
-```
-
-### Yarn
-
-```
-$ yarn add remark-excerpt
-```
+This package is ESM only and I sorta regret it! Life is a learning experience!
 
 ## Usage
 
@@ -38,19 +47,23 @@ Paragraph 4.
 
 And our script, `example.js`, looks as follows:
 
-```js
-const remark = require('remark');
-const excerpt = require('remark-excerpt');
-const vfile = require('to-vfile');
+```javascript
+import fs from 'fs'
+import { remark } from 'remark'
+import remarkParse from 'remark-parse'
+import remarkComment from 'remark-comment'
+import { excerpt } from '@eligundry/remark-excerpt'
 
-(async () => {
-    const file = await vfile.read('example.md');
-    const result = await remark()
-        .use(excerpt)
-        .process(file);
+;(async () => {
+  const file = await fs.promises.read('example.md')
+  const result = await remark()
+    .use(remarkParse)
+    .use(remarkComment, { ast: true })
+    .use(excerpt)
+    .process(file)
 
-    console.log(result.toString());
-})();
+  console.log(result.toString())
+})()
 ```
 
 Now, running `node example` yields:
@@ -63,7 +76,44 @@ Paragraph 1.
 Paragraph 2.
 ```
 
-You can try this yourself by downloading or cloning the project, installing dependencies, and running `yarn example`.
+If you wanted to link to where the excerpt broke off, say for a read more link, you would do the following:
+
+```javascript
+import fs from 'fs'
+import { remark } from 'remark'
+import remarkParse from 'remark-parse'
+import remarkComment from 'remark-comment'
+import remarkMDX from 'remark-mdx'
+import { excerptBreakpoint } from '@eligundry/remark-excerpt'
+
+;(async () => {
+  const file = await fs.promises.read('example.md')
+  const result = await remark()
+    .use(remarkMDX)
+    .use(remarkParse)
+    .use(remarkComment, { ast: true })
+    .use(excerptBreakpoint)
+    .process(file)
+
+  console.log(result.toString())
+})()
+```
+
+This would yield the following:
+
+```
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+```
 
 ## API
 
@@ -80,6 +130,26 @@ Default: `excerpt`, `more`, `preview`, or `teaser`
 
 Specifies the excerpt comment identifier to look for.
 
+### `remark().use(excerptBreakpoint[, options])`
+
+Inserts a `<span id="read-more" />` tag with MDX. This can be used for deep linking into documents from a read more link
+in the preview. If there are multiple `<!-- excerpt -->` comments, this element will be inserted at the last instance.
+
+##### `identifier`
+
+Type: `String`
+Default: `excerpt`, `more`, `preview`, or `teaser`
+
+Specifies the excerpt comment identifier to look for.
+
+##### `breakpointID`
+
+Type: `String`
+Default: `read-more`
+
+The ID to be applied to the `<span />` element for the breakpoint. Can be helpful if you have multiple breakpoints that
+you need to scroll to from various previews.
+
 ## License
 
-MIT © [Michael Novotny](https://manovotny.com)
+MIT © [Eli Gundry](https://eligundry.com)

@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`excerptBreakpoint should handle identifier with dashes 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should handle identifier with spaces 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should handle mdx 1`] = `
+import something from 'something'
+
+export const meta = {
+  prop: 'value',
+}
+
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should handle no spacing in exceprt comment 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should return after excerpt when multiple exist 1`] = `
+# Title
+
+Paragraph 1.
+
+<!-- excerpt -->
+
+Paragraph 2.
+
+<!-- excerpt -->
+
+Paragraph 3.
+
+<span id="read-more" />
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should return excerpt breakpoint using "exceprt" identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should return excerpt breakpoint using "more" identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should return excerpt using "preview" identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should return excerpt using "teaser" identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should return excerpt using custom identifier 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+<span id="read-more" />
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;
+
+exports[`excerptBreakpoint should return unmodified document when no excerpt exists 1`] = `
+# Title
+
+Paragraph 1.
+
+Paragraph 2.
+
+Paragraph 3.
+
+Paragraph 4.
+
+`;

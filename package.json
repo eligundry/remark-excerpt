@@ -1,51 +1,87 @@
 {
-    "name": "remark-excerpt",
-    "description": "Remark transformer for extracting an excerpt.",
-    "version": "1.0.0-beta.1",
-    "author": {
-        "name": "Michael Novotny",
-        "email": "manovotny@gmail.com",
-        "url": "https://manovotny.com"
-    },
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/manovotny/remark-excerpt.git"
-    },
-    "keywords": [
-        "excerpt",
-        "markdown",
-        "more",
-        "preview",
-        "remark",
-        "remark-plugin",
-        "teaser"
-    ],
-    "engines": {
-        "node": ">=8.6.0",
-        "yarn": ">=1.0.0"
-    },
-    "main": "index.js",
-    "scripts": {
-        "coverage": "jest --coverage",
-        "example": "node example/example.js",
-        "lint": "eslint . --ext .json --ext .js",
-        "prettier": "prettier --write \"**/*.{js,md,mdx,yml}\"",
-        "test": "yarn lint && yarn coverage",
-        "unit": "jest"
-    },
-    "dependencies": {
-        "unist-util-visit": "1.4.0"
-    },
-    "devDependencies": {
-        "eslint": "4.19.1",
-        "eslint-config-get-off-my-lawn-prettier": "1.0.0",
-        "husky": "1.3.1",
-        "jest": "24.1.0",
-        "jest-snapshot-serializer-raw": "1.1.0",
-        "lint-staged": "8.1.3",
-        "prettier": "1.16.4",
-        "remark": "10.0.1",
-        "to-vfile": "5.0.2"
+  "name": "@eligundry/remark-excerpt",
+  "description": "Remark transformer for extracting an excerpt.",
+  "version": "2.0.0",
+  "private": false,
+  "author": {
+    "name": "Eli Gundry",
+    "email": "eligundry@gmail.com",
+    "url": "https://eligundry.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eligundry/remark-excerpt.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "excerpt",
+    "markdown",
+    "more",
+    "preview",
+    "remark",
+    "remark-plugin",
+    "teaser"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "type": "module",
+  "main": "./build/index.js",
+  "exports": {
+    ".": "./build/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "index.d.ts": [
+        "build/index.d.ts"
+      ]
     }
+  },
+  "scripts": {
+    "coverage": "jest --coverage",
+    "example": "node example/example.mjs",
+    "prettier": "prettier --write \"**/*.{js,ts,md,mdx,yml}\"",
+    "test": "yarn coverage",
+    "unit": "jest",
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "unist-util-visit": "^4.1.0"
+  },
+  "peerDependencies": {
+    "remark-comment": "^1.0.0",
+    "remark-mdx": "^2.1.1",
+    "remark-parse": "^10.0.1"
+  },
+  "peerDependenciesMeta": {
+    "remark-mdx": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@handbook/remark-node-types": "^1.1.0",
+    "@types/jest": "^27.5.1",
+    "jest": "28.0.0",
+    "jest-snapshot-serializer-raw": "1.2.0",
+    "prettier": "2.6.2",
+    "remark": "^14.0.2",
+    "remark-comment": "^1.0.0",
+    "remark-mdx": "^2.1.1",
+    "remark-parse": "^10.0.1",
+    "to-vfile": "5.0.2",
+    "ts-jest": "^28.0.3",
+    "typescript": "^4.7.2"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "semi": false
+  }
 }
