@@ -2,13 +2,20 @@ import fs from 'fs'
 import path from 'path'
 import { wrap } from 'jest-snapshot-serializer-raw'
 import { remark } from 'remark'
+import remarkParse from 'remark-parse'
+import remarkComment from 'remark-comment'
 import { excerpt, ExcerptOptions } from '../index'
 
 describe('excerpt', () => {
   const processFixture = async (name: string, options?: ExcerptOptions) => {
     const p = path.join(__dirname, 'fixtures', name)
     const file = await fs.promises.readFile(p)
-    const result = await remark().use(excerpt, options).process(file)
+    const result = await remark()
+      .use(remarkParse)
+      // @ts-ignore
+      .use(remarkComment, { ast: true })
+      .use(excerpt, options)
+      .process(file)
 
     return result.toString()
   }

@@ -5,15 +5,15 @@
 This is a [remark](https://remark.js.org/) plugin for transformer for extracting an excerpt, similar to [WordPress's excerpt functionality](https://kinsta.com/knowledgebase/wordpress-excerpt/).
 
 This repo is a fork of [manovotny/remark-excerpt](https://github.com/manovotny/remark-excerpt) that I extended for more
-related functionality.
+related functionality and better MDX support.
 
 ## Installation
 
 ```bash
 # npm
-$ npm i @eligundry/remark-excerpt
+$ npm i @eligundry/remark-excerpt remark-parse remark-comment
 # yarn
-$ yarn add @eligundry/remark-excerpt
+$ yarn add @eligundry/remark-excerpt remark-parse remark-comment
 ```
 
 ## Usage
@@ -39,11 +39,17 @@ And our script, `example.js`, looks as follows:
 ```javascript
 import fs from 'fs'
 import { remark } from 'remark'
-import { excerpt } from 'remark-excerpt'
+import remarkParse from 'remark-parse'
+import remarkComment from 'remark-comment'
+import { excerpt } from '@eligundry/remark-excerpt'
 
 ;(async () => {
   const file = await fs.promises.read('example.md')
-  const result = await remark().use(excerpt).process(file)
+  const result = await remark()
+    .use(remarkParse)
+    .use(remarkComment, { ast: true })
+    .use(excerpt)
+    .process(file)
 
   console.log(result.toString())
 })()
@@ -67,7 +73,7 @@ import { remark } from 'remark'
 import remarkParse from 'remark-parse'
 import remarkComment from 'remark-comment'
 import remarkMDX from 'remark-mdx'
-import { excerptBreakpoint } from 'remark-excerpt'
+import { excerptBreakpoint } from '@eligundry/remark-excerpt'
 
 ;(async () => {
   const file = await fs.promises.read('example.md')
