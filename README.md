@@ -122,7 +122,7 @@ In order to use this plugin, the following packages must be installed and includ
 
 * [remark-parse](https://www.npmjs.com/package/remark-parse)
 * [remark-comment](https://www.npmjs.com/package/remark-comment)
-* Some sort of MDX procssor, either [remark-mdx](https://github.com/mdx-js/mdx/tree/main/packages/remark-mdx) or
+* Some sort of MDX processor, either [remark-mdx](https://github.com/mdx-js/mdx/tree/main/packages/remark-mdx) or
   providing this plugin and others to [mdx-bundler](https://github.com/kentcdodds/mdx-bundler) in the `remarkPlugins`
   option.
 
