@@ -13,7 +13,7 @@ related functionality.
 # npm
 $ npm i @eligundry/remark-excerpt
 # yarn
-$ yarn add remark-excerpt
+$ yarn add @eligundry/remark-excerpt
 ```
 
 ## Usage

@@ -1,7 +1,7 @@
 {
   "name": "@eligundry/remark-excerpt",
   "description": "Remark transformer for extracting an excerpt.",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0",
   "private": false,
   "author": {
     "name": "Eli Gundry",
@@ -51,6 +51,22 @@
   },
   "dependencies": {
     "unist-util-visit": "^4.1.0"
+  },
+  "peerDependencies": {
+    "remark-comment": "^1.0.0",
+    "remark-mdx": "^2.1.1",
+    "remark-parse": "^10.0.1"
+  },
+  "peerDependenciesMeta": {
+    "remark-comment": {
+      "optional": true
+    },
+    "remark-mdx": {
+      "optional": true
+    },
+    "remark-parse": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@handbook/remark-node-types": "^1.1.0",
