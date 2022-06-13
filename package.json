@@ -42,7 +42,7 @@
   },
   "scripts": {
     "coverage": "jest --coverage",
-    "example": "node example/example.js",
+    "example": "node example/example.mjs",
     "prettier": "prettier --write \"**/*.{js,ts,md,mdx,yml}\"",
     "test": "yarn coverage",
     "unit": "jest",
